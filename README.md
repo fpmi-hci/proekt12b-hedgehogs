@@ -23,3 +23,8 @@
 ## Contributing
 - Team Lead/ BA - Гиро Елизавета
 - Full Stack Dev - Горшков Даниил
+
+
+
+# Trell Board
+https://trello.com/b/aI6Lu3SL/hedgehogs-team-bookstore-project

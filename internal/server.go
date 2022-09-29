@@ -42,7 +42,7 @@ func initLogger() {
 
 func envsCheck() {
 	requiredEnvs := []string{"HOST", "DBPORT", "USERNAME", "PASSWORD",
-		"DBNAME", "SSLMODE", "SERVPORT"}
+		"DBNAME", "SSLMODE", "PORT"}
 	var msg []string
 	for _, el := range requiredEnvs {
 		val, exists := os.LookupEnv(el)

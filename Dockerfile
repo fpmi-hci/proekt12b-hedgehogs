@@ -4,8 +4,8 @@ WORKDIR /app
 
 ADD . ./
 RUN go mod download
-RUN go build -o /app/project ./cmd/api
+RUN go build -o /app/proekt12b-hedgehogs ./cmd/api
 
 
-CMD ["./project"]
+CMD ["./proekt12b-hedgehogs"]
 #CMD ["sh", "-c", "tail -f /dev/null"]

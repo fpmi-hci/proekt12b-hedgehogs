@@ -9,7 +9,7 @@ import (
 
 func main() {
 	server := new(internal.Server)
-	if err := server.Run(os.Getenv("SERVPORT")); err != nil {
+	if err := server.Run(os.Getenv("PORT")); err != nil {
 		log.Fatalf("error while running server %s", err.Error())
 	}
 }

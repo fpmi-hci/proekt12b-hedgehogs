@@ -2,12 +2,14 @@ package service
 
 import (
 	"errors"
+
 	"github.com/fpmi-hci/proekt12b-hedgehogs/internal/domain"
 	"github.com/fpmi-hci/proekt12b-hedgehogs/internal/repository"
 	"github.com/golang-jwt/jwt/v4"
 
-	"golang.org/x/crypto/bcrypt"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 const (
@@ -16,7 +18,7 @@ const (
 )
 
 type tokenClaims struct {
-	jwt.StandardClaims
+	jwt.RegisteredClaims
 	UserId int `json:"userId"`
 }
 
@@ -36,14 +38,14 @@ func (s *AuthService) GenerateToken(username, password string) (string, error) {
 		return "", err
 	}
 	if isValid := checkPasswordHash(password, user.PasswordHash); !isValid {
-		err := errors.New("Wrong Password")
+		err := errors.New("wrong Password")
 		return "", err
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
-		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(tokenTTL).Unix(),
-			IssuedAt:  time.Now().Unix(),
+		jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(tokenTTL)),
+			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 		user.ID,
 	})

@@ -85,7 +85,6 @@ func Inject() *gin.Engine {
 
 	router.Group("/").GET("/health", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{"status": "alive"})
-		return
 	})
 
 	router.Use(middleware.Logger())

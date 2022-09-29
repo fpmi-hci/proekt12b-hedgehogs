@@ -51,6 +51,11 @@ func (h *Handler) signIn(c *gin.Context) {
 	}
 
 	user, err := h.services.GetUserByUsername(json.Login)
+
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusInternalServerError, responses.NewServerInternalError(err.Error()))
+		return
+	}
 	user.PasswordHash = ""
 
 	c.JSON(http.StatusOK, map[string]interface{}{

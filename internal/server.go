@@ -65,9 +65,12 @@ func Inject() *gin.Engine {
 		SSLMode:  os.Getenv("SSLMODE"),
 	}
 
-	connection := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
-		cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.Password, cfg.SSLMode)
-	db, err := sqlx.Open("postgres", connection)
+	dbURL := os.Getenv("DATABASE_URL")
+
+	connection := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s", cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.Password, cfg.SSLMode)
+
+	fmt.Println(connection)
+	db, err := sqlx.Open("postgres", dbURL)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}

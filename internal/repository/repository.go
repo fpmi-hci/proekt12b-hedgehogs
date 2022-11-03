@@ -12,10 +12,12 @@ type Authorization interface {
 
 type Books interface {
 	CreateBook(book *domain.Book) error
-	GetAllBooks() ([]domain.Book, error)
+	AddBookToCart(ID int, userID int) error
+	GetAllBooks(filters *domain.BookFilter) ([]domain.Book, error)
+	GetBookFromCartByUserId(id int) ([]domain.Book, error)
 	UpdateBookById(book *domain.Book, id int) error
 	GetBookById(id int) (*domain.Book, error)
-	DeleteBookById(id int) error
+	DeleteBookById(id int, userID int) error
 	GetBookByAuthor(author string) (*domain.Book, error)
 	GetBookByPublisher(publisher string) (*domain.Book, error)
 }

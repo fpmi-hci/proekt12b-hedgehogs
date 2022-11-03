@@ -56,20 +56,20 @@ func envsCheck() {
 }
 
 func Inject() *gin.Engine {
-	cfg := DbPostgresConfig{
-		Host:     os.Getenv("HOST"),
-		Port:     os.Getenv("DBPORT"),
-		Username: os.Getenv("USERNAME"),
-		Password: os.Getenv("PASSWORD"),
-		DBName:   os.Getenv("DBNAME"),
-		SSLMode:  os.Getenv("SSLMODE"),
-	}
+	//cfg := DbPostgresConfig{
+	//	Host:     os.Getenv("HOST"),
+	//	Port:     os.Getenv("DBPORT"),
+	//	Username: os.Getenv("USERNAME"),
+	//	Password: os.Getenv("PASSWORD"),
+	//	DBName:   os.Getenv("DBNAME"),
+	//	SSLMode:  os.Getenv("SSLMODE"),
+	//}
 
 	dbURL := os.Getenv("DATABASE_URL")
 
-	connection := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s", cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.Password, cfg.SSLMode)
+	//connection := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable", cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.Password)
 
-	fmt.Println(connection)
+	fmt.Println(dbURL)
 	db, err := sqlx.Open("postgres", dbURL)
 	if err != nil {
 		log.Fatalf(err.Error())
